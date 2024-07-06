@@ -4,7 +4,10 @@ from www.webapp.index import webapp
 
 
 def create_app():
-    flask_app = flask.Flask(__name__, template_folder='webapp/static', static_folder='webapp/static')
+    flask_app = flask.Flask(
+        __name__,
+        template_folder='webapp/static',
+        static_folder='webapp/static')
 
     flask_app.register_blueprint(webapp)
 
