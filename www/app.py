@@ -1,14 +1,18 @@
 import flask
 
-from www.webapp import webapp
-from www.api.infraestructure.http_controllers import api
+from webapp import webapp
+from api.infraestructure.http_controllers import api
 
 
 def create_app():
     flask_app = flask.Flask(
         __name__,
-        template_folder='webapp/static',
+        template_folder='webapp/templates',
         static_folder='webapp/static')
+
+    @flask_app.route('/health')
+    def health():
+        return 'OK'
 
     flask_app.register_blueprint(webapp)
     flask_app.register_blueprint(api, url_prefix='/api/')
